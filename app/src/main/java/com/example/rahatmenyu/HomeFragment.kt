@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rahatmenyu.databinding.FragmentHomeBinding
 
@@ -20,7 +21,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         // code area
-
+        Toast.makeText(context,"Hello",Toast.LENGTH_SHORT).show()
         myList = arrayListOf()
         for (x in 1..20) {
             val itemModel = ItemModel(
