@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Rahat Menyu</string>
+    <string name="home">Ana səhifə</string>
+    <string name="search">Axtarış</string>
+    <string name="add">Əlavə et</string>
+    <string name="like">Favoritlər</string>
+    <string name="profile">Hesab</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">TODO</string>
+</resources>
