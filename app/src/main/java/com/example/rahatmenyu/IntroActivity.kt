@@ -13,6 +13,7 @@ class IntroActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.button.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
