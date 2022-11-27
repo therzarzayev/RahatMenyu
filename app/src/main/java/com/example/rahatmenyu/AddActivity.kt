@@ -23,7 +23,7 @@ class AddActivity : AppCompatActivity() {
         binding = ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageView3.setOnClickListener {
+        binding.button2.setOnClickListener {
             selectImage()
         }
     }
@@ -40,14 +40,18 @@ class AddActivity : AppCompatActivity() {
                 1
             )
         } else {
-            val i = Intent()
-            i.type = "image/*"
-            i.action = Intent.ACTION_GET_CONTENT
-            launchActivity.launch(i)
+            chooseImg()
         }
     }
 
-    private var launchActivity =
+    private fun chooseImg() {
+        val i = Intent()
+        i.type = "image/*"
+        i.action = Intent.ACTION_GET_CONTENT
+        launcher.launch(i)
+    }
+
+    private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result: ActivityResult ->
             if (result.resultCode == RESULT_OK) {
@@ -73,4 +77,17 @@ class AddActivity : AppCompatActivity() {
                 }
             }
         }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 1) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                chooseImg()
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 }

@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         myList = arrayListOf()
         for (x in 1..20) {
             val itemModel = ItemModel(
-                "Ardmf",
+                "Android Developer",
                 R.drawable.ic_person,
                 "Lorem ipsum dolor sit."
             )
