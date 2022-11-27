@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rahatmenyu.databinding.ActivityAddBinding
 
 
+@Suppress("DEPRECATION")
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +29,11 @@ class AddActivity : AppCompatActivity() {
         val i = Intent()
         i.type = "image/*"
         i.action = Intent.ACTION_GET_CONTENT
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            launchActivity.launch(i)
-        }
+        launchActivity.launch(i)
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.P)
+
     private var launchActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         { result: ActivityResult ->
