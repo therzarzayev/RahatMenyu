@@ -1,5 +1,6 @@
 package com.example.rahatmenyu
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,13 +22,12 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         // code area
-        Toast.makeText(context,"Hello",Toast.LENGTH_SHORT).show()
         myList = arrayListOf()
         for (x in 1..20) {
             val itemModel = ItemModel(
                 "Ardmf",
                 R.drawable.ic_person,
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                "Lorem ipsum dolor sit."
             )
             myList.add(itemModel)
         }
@@ -36,6 +36,11 @@ class HomeFragment : Fragment() {
         binding.recycleView.setHasFixedSize(true)
         adapter = RVAdapter(myList)
         binding.recycleView.adapter = adapter
+
+        adapter.onItemClick = {
+            val intent = Intent(context, AddActivity::class.java)
+            startActivity(intent)
+        }
 
         // code area
         return binding.root
