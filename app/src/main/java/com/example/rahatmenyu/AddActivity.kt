@@ -14,8 +14,7 @@ import com.example.rahatmenyu.databinding.ActivityAddBinding
 
 
 class AddActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAddBinding
-    var SELECT_PICTURE = 200
+    private lateinit var binding: ActivityAddBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddBinding.inflate(layoutInflater)
