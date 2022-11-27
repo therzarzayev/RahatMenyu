@@ -1,6 +1,7 @@
 package com.example.rahatmenyu
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
@@ -9,6 +10,8 @@ import android.provider.MediaStore
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.rahatmenyu.databinding.ActivityAddBinding
 
 
@@ -21,18 +24,28 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.imageView3.setOnClickListener {
-            imageChooser()
+            selectImage()
         }
     }
 
-    private fun imageChooser() {
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
-        launchActivity.launch(i)
-
+    private fun selectImage() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                1
+            )
+        } else {
+            val i = Intent()
+            i.type = "image/*"
+            i.action = Intent.ACTION_GET_CONTENT
+            launchActivity.launch(i)
+        }
     }
-
 
     private var launchActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult())
